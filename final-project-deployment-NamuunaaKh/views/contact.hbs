@@ -1,0 +1,104 @@
+<h1 class="contact-title">Wanna say hello to me?</h1>
+
+<div class="contact-container">
+  <form class="contact-form" action="/contact" method="POST">
+    <div class="form-group">
+      <label for="name">What is your name?</label>
+      <input type="text" id="name" name="name" required />
+    </div>
+
+    <div class="form-group">
+      <label for="email">What is your email?</label>
+      <input type="email" id="email" name="email" required />
+    </div>
+
+    <div class="form-group">
+      <label for="message">Your message</label>
+      <textarea id="message" name="message" rows="4" required></textarea>
+    </div>
+
+    <button type="submit" class="send-button">Send 💌</button>
+  </form>
+
+  {{#if showThankYou}}
+    <div class="thank-you">
+      <h3>💌 Thank you for your message! I’ll get back to you soon 💖</h3>
+    </div>
+  {{/if}}
+
+  <div class="my-contacts">
+    <h3>Contact Details</h3>
+    <p>📧 nk3484@nyu.edu</p>
+    <p>📱 +646 388 1215</p>
+
+    <h3>Socials</h3>
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/namuunaa-khishigjargal-414766293" target="_blank">
+            <img src="/linkedin.png" />
+        </a>
+        <a href="https://www.instagram.com/namuunaa.kh/" target="_blank">
+            <img src="/instagram.png"/>
+        </a>
+    </div>
+  </div>
+</div>
+
+<div class="feedback-container">
+<div id="feedbackSection">
+    <h3>Wanna give feedback for my website?</h3>
+
+    <form id="feedbackForm">
+    <p>Do you feel like you got to know me as a person?</p>
+    <label>
+        <input type="radio" name="knowMe" value="Yes" required> Yes
+    </label>
+    <label>
+        <input type="radio" name="knowMe" value="No"> No
+    </label>
+
+    <p>Do you think my website can be improved?</p>
+    <label>
+        <input type="radio" name="improve" value="Yes" required> Yes
+    </label>
+    <label>
+        <input type="radio" name="improve" value="No"> No
+    </label>
+
+    <p>Can you elaborate more if you want...</p>
+    <textarea name="elaboration" placeholder="Enter your feedback..." rows="4" cols="50"></textarea>
+
+    <button type="submit" class="feedback-submit">Submit Feedback</button>
+    </form>
+</div>
+
+<div id="thankYouMessage" style="display: none; margin-top: 2rem;">
+    <h3>Thank you for your feedback! 🌟</h3>
+</div>
+</div>
+
+<script>
+document.getElementById('feedbackForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const formData = new FormData(this);
+  const data = Object.fromEntries(formData);
+
+  try {
+    const res = await fetch('/submit-feedback', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    if (res.ok) {
+      document.getElementById('feedbackSection').style.display = 'none';
+      document.getElementById('thankYouMessage').style.display = 'block';
+    } else {
+      alert('Something went wrong. Please try again.');
+    }
+  } catch (err) {
+    console.error('Error submitting feedback:', err);
+  }
+});
+
+</script>

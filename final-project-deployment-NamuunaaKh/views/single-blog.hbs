@@ -1,0 +1,35 @@
+<div class="single-blog-container">
+  <h1 class="single-blog-title">{{{blog.title}}}</h1>
+
+  <div class="single-blog-content">
+    <p>{{{blog.content}}}</p>
+  </div>
+
+  <div class="comment-section">
+    <h3>💬 Wanna leave a comment?</h3>
+    <form class="comment-form" action="/mini-blogs/{{blog._id}}" method="POST">
+      <input class="comment-name" type="text" name="name" placeholder="Your name" required>
+      <textarea class="comment-text" name="message" rows="3" placeholder="Write your comment..." required></textarea>
+      <button class="comment-button" type="submit">Post Comment</button>
+    </form>
+
+  <h4>Previous Comments:</h4>
+  <div class="comments-list">
+    {{#each blog.comments}}
+      <div class="comment-card">
+        <p class="comment-author">{{this.name}}</p>
+        <p class="comment-message">{{this.message}}</p>
+        <small class="comment-date">🕒 {{this.date}}</small>
+      </div>
+    {{else}}
+      <p>No comments yet!</p>
+    {{/each}}
+  </div>
+
+  </div>
+
+  <div class="back-link">
+    <a href="/mini-blogs">← Back to Mini Blogs</a>
+  </div>
+</div>
+

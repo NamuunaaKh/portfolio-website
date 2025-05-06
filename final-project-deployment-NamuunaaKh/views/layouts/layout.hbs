@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+    <nav class="navbar">
+
+        <div class="name"><a href="/">Namuunaa Khishigjargal</a></div>
+        <a href="/about-me" class="{{isActive currentPath "/about-me"}}">About Me</a>
+        <a href="/coding-project" class="{{isActive currentPath "/coding-project"}}">Coding Project</a>
+        <a href="/work-experience" class="{{isActive currentPath "/work-experience"}}">Work Experience</a>
+        <a href="/interests-inspiration" class="{{isActive currentPath "/interests-inspiration"}}">Interests & Inspiration</a>
+        <a href="/mini-blogs" class="{{isActive currentPath "/mini-blogs"}}">Mini Blogs</a>
+        <a href="/contact" class="{{isActive currentPath "/contact"}}">Contact</a>
+
+    </nav>
+
+    <main>
+        {{{body}}}
+    </main>
+</body>
+</html>

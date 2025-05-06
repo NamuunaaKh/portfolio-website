@@ -1,0 +1,55 @@
+{{#each projects}}
+  <section class="project-card">
+    <h2>{{this.title}}</h2>
+    <p>{{this.description}}</p>
+    <ul>
+      {{#each this.technologies}}
+        <li>{{this}}</li>
+      {{/each}}
+    </ul>
+    <button class="view-project-btn">View Project 🚀</button>
+    <div class="project-details" style="display: none;">
+    <!-- This will be filled via AJAX -->
+    {{#if this.image}}
+        <img src="/{{this.image}}" class="project-image" />
+    {{/if}}
+    {{#if this.githubLink}}
+        <a href="{{this.githubLink}}" class="btn">View on GitHub</a>
+    {{/if}}
+    {{#if this.liveDemo}}
+      <a href="{{this.liveDemo}}" class="btn">Live Demo 🌟</a>
+    {{/if}}
+    </div>
+  </section>
+{{/each}}
+
+<script>
+    const buttons = document.querySelectorAll('.view-project-btn')
+    buttons.forEach((btn) => {
+        btn.addEventListener('click', async () => {
+            const card = btn.closest('.project-card')
+            const detailsDiv = card.querySelector('.project-details')
+            const projectId = card.dataset.id
+
+            if (detailsDiv.style.display === "block") {
+                detailsDiv.style.display = "none";
+                btn.textContent = "View Project 🚀";
+                return;
+            }
+
+            if (!detailsDiv.innerHTML.trim()) {
+                const res = await fetch(`/project/${projectId}`);
+                const data = await res.json();
+
+            detailsDiv.innerHTML = `
+              <p><strong>Technologies Used:</strong></p>
+              <ul>${data.technologies.map(t => `<li>${t}</li>`).join('')}</ul>
+              ${data.githubLink ? `<a href="${data.githubLink}" target="_blank" class="btn">GitHub</a>` : ''}
+              ${data.liveDemo ? `<a href="${data.liveDemo}" target="_blank" class="btn">Live Demo</a>` : ''}
+            `;
+            }
+            detailsDiv.style.display = "block";
+            btn.textContent = "Hide Project ✨";
+        });
+    })
+</script>

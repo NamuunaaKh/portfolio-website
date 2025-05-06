@@ -1,0 +1,10 @@
+<h1 class="blog-list-title">Here are some thoughts and stories I’ve written 💫</h1>
+
+<div class="blog-list">
+    {{#each blogs}}
+        <a href="/mini-blogs/{{this._id}}" class="blog-card">
+            <h2>{{{this.title}}}</h2>
+            <p>{{{truncate this.content 100}}}</p>
+        </a>
+    {{/each}}
+</div>
