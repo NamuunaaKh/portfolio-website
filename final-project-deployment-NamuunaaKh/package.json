@@ -21,9 +21,9 @@
     "@handlebars/allow-prototype-access": "^1.0.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
-    "express-handlebars": "^8.0.1",
+    "express-handlebars": "^8.0.3",
     "hbs": "^4.2.0",
-    "mongoose": "^8.13.2",
+    "mongoose": "^8.15.0",
     "mongoose-slug-plugin": "^2.1.0"
   }
 }

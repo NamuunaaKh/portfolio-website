@@ -11,7 +11,7 @@ const projectSchema = new mongoose.Schema({
   technologies: [String],
   githubLink: String,
   liveDemo: String,
-  image: String,
+  image: [String],
 });
 
 const blogPostSchema = new mongoose.Schema({

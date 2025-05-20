@@ -11,7 +11,9 @@
     <div class="project-details" style="display: none;">
     <!-- This will be filled via AJAX -->
     {{#if this.image}}
-        <img src="/{{this.image}}" class="project-image" />
+      {{#each this.image}}
+          <img src="/{{this}}" class="project-image" />
+      {{/each}}
     {{/if}}
     {{#if this.githubLink}}
         <a href="{{this.githubLink}}" class="btn">View on GitHub</a>
